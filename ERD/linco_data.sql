@@ -107,7 +107,7 @@ values ('공지사항'),
 insert into BOARD(user_id, club_id, board_type_id, title, content, viewcnt, regdate)
 values (1, null, 1, '벌레마시쪙', '벌레마시쪙????', 3, null),
        (2, 2, 2, '아니', '아니 맛없쪙', 2, null),
-       (2, 2, 2, '야 나두!', '야 너두? 맛없쪙? 나두 맛없쪙', 2, null);
+       (3, 2, 2, '야 나두!', '야 너두? 맛없쪙? 나두 맛없쪙', 2, null);
 
 # select * from BOARD;
 
@@ -131,8 +131,8 @@ values (1, 1),
 
 insert into COMMENT(user_id, board_id, attachment_id, content, regdate)
 values (1, 1, 1, '재미없쪙', null),
-       (2, 1, 1, '야 너도?', null),
-       (3, 1, 1, '야 나두', null);
+       (2, 2, 1, '야 너도?', null),
+       (3, 3, 1, '야 나두', null);
 
 # select * from COMMENT;
 
@@ -158,6 +158,8 @@ values (1, 1, 'PAYED'),
 insert into SOCIALIZING (venue_id, socializing_title, category, detail_category, address, meeting_date, meeting_time,
                          limit_num, content, total_price, img, regdate)
 values (1, '같이 스야치쟝~', '운동', '야구', '서울시 강남구 역삼동 테헤란로 26길12', '2024-06-13', '09:00', 30, '강의실에서 빠따치쟝', 1000,
+        'face02.png', null),
+       (3, '코딩하쟝~~', '공부', '컴퓨터', '서울시 강남구 역삼동 테헤란로 26길13', '2024-06-14', '09:00', 30, '강의실에서 키보드나 두드리쟝', 20000,
         'face02.png', null),
        (1, '코딩하쟝~~', '공부', '컴퓨터', '서울시 강남구 역삼동 테헤란로 26길13', '2024-06-14', '09:00', 30, '강의실에서 키보드나 두드리쟝', 20000,
         'face02.png', null);
