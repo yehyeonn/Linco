@@ -107,7 +107,7 @@ values ('공지사항'),
 insert into BOARD(user_id, club_id, board_type_id, title, content, viewcnt, regdate)
 values (1, null, 1, '벌레마시쪙', '벌레마시쪙????', 3, null),
        (2, 2, 2, '아니', '아니 맛없쪙', 2, null),
-       (2, 2, 2, '야 나두!', '야 너두? 맛없쪙? 나두 맛없쪙', 2, null);
+       (3, 2, 2, '야 나두!', '야 너두? 맛없쪙? 나두 맛없쪙', 2, null);
 
 # select * from BOARD;
 
@@ -131,8 +131,8 @@ values (1, 1),
 
 insert into COMMENT(user_id, board_id, attachment_id, content, regdate)
 values (1, 1, 1, '재미없쪙', null),
-       (2, 1, 1, '야 너도?', null),
-       (3, 1, 1, '야 나두', null);
+       (2, 2, 1, '야 너도?', null),
+       (3, 3, 1, '야 나두', null);
 
 # select * from COMMENT;
 
@@ -147,17 +147,19 @@ values ('코리아IT아카데미', '서울시 강남구 역삼동 테헤란로 2
 
 # select * from VENUE;
 
-insert into RESERVATION (user_id, venue_id, status)
-values (1, 1, 'PAYED'),
-       (1, 2, 'CANCELED'),
-       (1, 3, 'PAYED'),
-       (2, 3, 'DONE');
+insert into RESERVATION (user_id, venue_id, status, reservate_date, reservate_start_time, reservate_end_time)
+values (1, 1, 'PAYED', '2024-06-14', '09:00:00',  '18:00:00'),
+       (1, 2, 'CANCELED', '2024-06-15', '09:00:00',  '22:00:00'),
+       (1, 3, 'PAYED', '2024-06-13', '00:00:00',  '23:59:59'),
+       (2, 1, 'DONE', '2024-06-16', '09:00:00',  '18:00:00');
 
 # select * from RESERVATION;
 
 insert into SOCIALIZING (venue_id, socializing_title, category, detail_category, address, meeting_date, meeting_time,
                          limit_num, content, total_price, img, regdate)
 values (1, '같이 스야치쟝~', '운동', '야구', '서울시 강남구 역삼동 테헤란로 26길12', '2024-06-13', '09:00', 30, '강의실에서 빠따치쟝', 1000,
+        'face02.png', null),
+       (3, '코딩하쟝~~', '공부', '컴퓨터', '서울시 강남구 역삼동 테헤란로 26길13', '2024-06-14', '09:00', 30, '강의실에서 키보드나 두드리쟝', 20000,
         'face02.png', null),
        (1, '코딩하쟝~~', '공부', '컴퓨터', '서울시 강남구 역삼동 테헤란로 26길13', '2024-06-14', '09:00', 30, '강의실에서 키보드나 두드리쟝', 20000,
         'face02.png', null);
