@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SocializingAuthority {
-    private String socialRole;  // master, member
+public class Socializing {
+
 }
