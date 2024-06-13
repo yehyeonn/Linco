@@ -1,7 +1,6 @@
 SELECT TABLE_NAME
 FROM information_schema.TABLES
-WHERE TABLE_SCHEMA = 'lonco'
-  AND TABLE_NAME LIKE 't5_%'
+WHERE TABLE_SCHEMA = 'linco'
 ;
 
 select * from USER;
