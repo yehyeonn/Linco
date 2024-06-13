@@ -1,10 +1,11 @@
 package com.lec.spring.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -12,8 +13,14 @@ import lombok.NoArgsConstructor;
 @Builder
 public class User {
 
-        private Long id;
-        private String username;    // 아이디
-        private String password;    // 비밀번호
-
+    private Long id;
+    private String tel;
+    private String username;    // 이메일형식
+    private String password;    // 비밀번호
+    private String name;
+    private String address;
+    private String gender;
+    private LocalDate birthday;
+    private String profile_picture;
+    private LocalDateTime regdate;
     }
