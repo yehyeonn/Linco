@@ -147,11 +147,11 @@ values ('코리아IT아카데미', '서울시 강남구 역삼동 테헤란로 2
 
 # select * from VENUE;
 
-insert into RESERVATION (user_id, venue_id, status)
-values (1, 1, 'PAYED'),
-       (1, 2, 'CANCELED'),
-       (1, 3, 'PAYED'),
-       (2, 3, 'DONE');
+insert into RESERVATION (user_id, venue_id, status, reservate_date, reservate_start_time, reservate_end_time)
+values (1, 1, 'PAYED', '2024-06-14', '09:00:00',  '18:00:00'),
+       (1, 2, 'CANCELED', '2024-06-15', '09:00:00',  '22:00:00'),
+       (1, 3, 'PAYED', '2024-06-13', '00:00:00',  '23:59:59'),
+       (2, 1, 'DONE', '2024-06-16', '09:00:00',  '18:00:00');
 
 # select * from RESERVATION;
 

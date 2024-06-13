@@ -16,6 +16,24 @@ DROP TABLE IF EXISTS CLUB;
 DROP TABLE IF EXISTS USER;
 DROP TABLE IF EXISTS AUTHORITY;
 
+CREATE TABLE USER
+(
+    id              INT          NOT NULL AUTO_INCREMENT,
+    tel             VARCHAR(20)  NOT NULL,
+    username        VARCHAR(50)  NOT NULL COMMENT '이메일',
+    password        VARCHAR(250) NOT NULL,
+    name            VARCHAR(20)  NOT NULL,
+    address         VARCHAR(50)  NULL    ,
+    gender          VARCHAR(10)  NULL    ,
+    birthday        DATETIME     NULL    ,
+    profile_picture VARCHAR(100) NULL    ,
+    regdate         DATETIME     NULL     DEFAULT now(),
+    PRIMARY KEY (id)
+);
+
+ALTER TABLE USER
+    ADD CONSTRAINT UQ_username UNIQUE (username);
+
 CREATE TABLE ATTACHMENT
 (
     id         INT          NOT NULL AUTO_INCREMENT,
@@ -98,12 +116,38 @@ CREATE TABLE COMMENT
     PRIMARY KEY (id)
 );
 
+CREATE TABLE VENUE
+(
+    id                   INT          NOT NULL AUTO_INCREMENT,
+    venue_name           VARCHAR(50)  NOT NULL,
+    address              VARCHAR(100) NOT NULL,
+    limit_num                INT          NOT NULL,
+    venue_category       VARCHAR(20)  NOT NULL,
+    info_tel             VARCHAR(20)  NULL    ,
+    price                INT          NOT NULL,
+    total_price          INT          NOT NULL,
+    open_time            TIME         NOT NULL COMMENT '영업시작',
+    close_time           TIME         NOT NULL COMMENT '영업끝',
+    reservate_date       DATE         NOT NULL COMMENT '예약날짜',
+    reservate_start_time TIME         NOT NULL COMMENT '예약시작',
+    reservate_end_time   TIME         NOT NULL COMMENT '예약끝',
+    img                  VARCHAR(255) NULL    ,
+    paydate              DATETIME     NULL     DEFAULT now(),
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE RESERVATION
 (
+    id       INT  NOT NULL AUTO_INCREMENT,
     user_id  INT  NOT NULL,
     venue_id INT  NOT NULL,
     status   ENUM('CANCELED', 'PAYED', 'DONE') NOT NULL,
-    PRIMARY KEY (user_id, venue_id)
+    reservate_date       DATE         NOT NULL COMMENT '예약날짜',
+    reservate_start_time TIME         NOT NULL COMMENT '예약시작',
+    reservate_end_time   TIME         NOT NULL COMMENT '예약끝',
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES  USER(id),
+    FOREIGN KEY (venue_id) REFERENCES VENUE(id)
 );
 
 CREATE TABLE SOCIALIZING
@@ -124,24 +168,6 @@ CREATE TABLE SOCIALIZING
     PRIMARY KEY (id)
 );
 
-CREATE TABLE USER
-(
-    id              INT          NOT NULL AUTO_INCREMENT,
-    tel             VARCHAR(20)  NOT NULL,
-    username        VARCHAR(50)  NOT NULL COMMENT '이메일',
-    password        VARCHAR(250) NOT NULL,
-    name            VARCHAR(20)  NOT NULL,
-    address         VARCHAR(50)  NULL    ,
-    gender          VARCHAR(10)  NULL    ,
-    birthday        DATETIME     NULL    ,
-    profile_picture VARCHAR(100) NULL    ,
-    regdate         DATETIME     NULL     DEFAULT now(),
-    PRIMARY KEY (id)
-);
-
-ALTER TABLE USER
-    ADD CONSTRAINT UQ_username UNIQUE (username);
-
 CREATE TABLE USER_AUTHORITY
 (
     user_id      INT NOT NULL,
@@ -157,25 +183,6 @@ CREATE TABLE USER_SOCIALIZING
     PRIMARY KEY (user_id, socializing_id)
 );
 
-CREATE TABLE VENUE
-(
-    id                   INT          NOT NULL AUTO_INCREMENT,
-    venue_name           VARCHAR(50)  NOT NULL,
-    address              VARCHAR(100) NOT NULL,
-    limit_num                INT          NOT NULL,
-    venue_category       VARCHAR(20)  NOT NULL,
-    info_tel             VARCHAR(20)  NULL    ,
-    price                INT          NOT NULL,
-    total_price          INT          NOT NULL,
-    open_time            TIME         NOT NULL COMMENT '영업시작',
-    close_time           TIME         NOT NULL COMMENT '영업끝',
-    reservate_date       DATE         NOT NULL COMMENT '예약날짜',
-    reservate_start_time TIME         NOT NULL COMMENT '예약시작',
-    reservate_end_time   TIME         NOT NULL COMMENT '예약끝',
-    img                  VARCHAR(255) NULL    ,
-    paydate              DATETIME     NULL     DEFAULT now(),
-    PRIMARY KEY (id)
-);
 
 ALTER TABLE USER_AUTHORITY
     ADD CONSTRAINT FK_USER_TO_USER_AUTHORITY
