@@ -1,3 +1,5 @@
+# data 삽입
+
 # 외래 키 제약 조건 비활성화
 SET FOREIGN_KEY_CHECKS = 0;
 
