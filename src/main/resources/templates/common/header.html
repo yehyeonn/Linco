@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navbar</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <script src="https://kit.fontawesome.com/185c349b6c.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<th:block th:fragment="header">
+    <header>
+        <!-- 헤더 -->
+        <nav class="navbar">
+            <div class="nav_logo"><a href="#">
+                <img src="/static/img/logo.png" alt="home">
+            </a></div>
+
+            <ul class="nav_menu">
+                <li><a href="#">Club</a></li>
+                <li><a href="#">Socializing</a></li>
+                <li><a href="#">Board</a></li>
+                <li><a href="#">Venue</a></li>
+                <li><a href="#">Culture & Art</a></li>
+            </ul>
+
+            <ul class="nav_icon">
+                <li><a href="#"><i class="fa-solid fa-circle-user fa-xl"></i></a></li>
+            </ul>
+
+            <a href="#" class="navbar_tooglebtn"><i class="fa-solid fa-bars"></i></a>
+        </nav>
+    </header>
+    <script src="/static/js/navbar.js"></script>
+</th:block>
+</body>
+</html>
