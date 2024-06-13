@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UserAuthority {
     private Long id;
-    private String socialRole;
+    private String userRoll;    // admin, member
 }
