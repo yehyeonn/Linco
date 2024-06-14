@@ -10,4 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class BoardType {
+    private Long id;
+    private String name;
 }
