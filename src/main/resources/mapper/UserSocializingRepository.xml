@@ -9,6 +9,7 @@
         <result column="u_id" property="id"/>
         <result column="u_tel" property="tel"/>
         <result column="u_username" property="username"/>
+        <result column="u_password" property="password"/>
         <result column="u_name" property="name"/>
         <result column="u_profile_picture" property="profile_picture"/>
         <result column="u_regdate" property="regdate"/>
@@ -19,7 +20,7 @@
         <collection property="user" resultMap="mapUser"/>
     </resultMap>
 
-    <select id="findByUserSocializing" resultMap="mapUserSocializing">
+    <select id="findBySocializingId" resultMap="mapUserSocializing">
         SELECT
             u.id "u_id"
              , u.tel "u_tel"
@@ -31,16 +32,14 @@
              , u.birthday "u_birthday"
              , u.profile_picture "u_profile_picture"
              , u.regdate "u_regdate"
-             , s.id "s_id"
              , us.role "us_role"
         FROM user u
-                 JOIN user_socializing us ON u.id = us.user_id
-                 JOIN socializing s ON s.id = us.socializing_id
+        JOIN user_socializing us ON u.id = us.user_id
         WHERE us.socializing_id = #{socializing_id}
+
     </select>
 
-    <insert id="save" flushCache="true" parameterType="com.lec.spring.domain.UserSocializing"
-            useGeneratedKeys="true" keyProperty="user_id" keyColumn="user_id">
+    <insert id="save" flushCache="true" parameterType="com.lec.spring.domain.UserSocializing">
         INSERT INTO user_socializing(user_id, socializing_id, role)
         VALUES(#{user.id}, #{socializing_id}, #{role})
     </insert>
