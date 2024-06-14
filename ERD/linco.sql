@@ -23,11 +23,11 @@ CREATE TABLE USER
     username        VARCHAR(50)  NOT NULL COMMENT '이메일',
     password        VARCHAR(250) NOT NULL,
     name            VARCHAR(20)  NOT NULL,
-    address         VARCHAR(50)  NULL    ,
-    gender          VARCHAR(10)  NULL    ,
-    birthday        DATETIME     NULL    ,
-    profile_picture VARCHAR(100) NULL    ,
-    regdate         DATETIME     NULL     DEFAULT now(),
+    address         VARCHAR(50)  NULL,
+    gender          VARCHAR(10)  NULL,
+    birthday        DATETIME     NULL,
+    profile_picture VARCHAR(100) NULL,
+    regdate         DATETIME     NULL DEFAULT now(),
     PRIMARY KEY (id)
 );
 
@@ -37,8 +37,8 @@ ALTER TABLE USER
 CREATE TABLE ATTACHMENT
 (
     id         INT          NOT NULL AUTO_INCREMENT,
-    board_id   INT          NULL    ,
-    club_id    INT          NULL    ,
+    board_id   INT          NULL,
+    club_id    INT          NULL,
     sourcename VARCHAR(100) NOT NULL,
     filename   VARCHAR(100) NOT NULL,
     PRIMARY KEY (id)
@@ -62,12 +62,12 @@ CREATE TABLE BOARD
 (
     id            INT          NOT NULL AUTO_INCREMENT,
     user_id       INT          NOT NULL COMMENT 'user_id',
-    club_id       INT          NULL    ,
+    club_id       INT          NULL,
     board_type_id INT          NOT NULL COMMENT '게시글위치',
     title         VARCHAR(100) NOT NULL COMMENT '제목',
-    content       LONGTEXT     NULL     COMMENT '내용',
-    viewcnt       INT          NULL     DEFAULT 0 COMMENT '조회수',
-    regdate       DATETIME     NULL     DEFAULT now() COMMENT '작성일',
+    content       LONGTEXT     NULL COMMENT '내용',
+    viewcnt       INT          NULL DEFAULT 0 COMMENT '조회수',
+    regdate       DATETIME     NULL DEFAULT now() COMMENT '작성일',
     PRIMARY KEY (id)
 );
 
@@ -91,17 +91,17 @@ CREATE TABLE CLUB
     name                   VARCHAR(20)  NOT NULL,
     category               VARCHAR(20)  NOT NULL,
     detail_category        VARCHAR(20)  NOT NULL,
-    intro                  TEXT         NULL     COMMENT '소개글',
-    content                LONGTEXT     NULL     COMMENT '상세',
-    representative_picture VARCHAR(100) NULL    ,
+    intro                  TEXT         NULL COMMENT '소개글',
+    content                LONGTEXT     NULL COMMENT '상세',
+    representative_picture VARCHAR(100) NULL,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE CLUB_USER_LIST
 (
-    user_id INT         NOT NULL,
-    club_id INT         NOT NULL,
-    role    ENUM('MASTER', 'MEMBER') NOT NULL     DEFAULT 'MEMBER',
+    user_id INT                       NOT NULL,
+    club_id INT                       NOT NULL,
+    role    ENUM ('MASTER', 'MEMBER') NOT NULL DEFAULT 'MEMBER',
     PRIMARY KEY (user_id, club_id)
 );
 
@@ -109,10 +109,10 @@ CREATE TABLE COMMENT
 (
     id            INT      NOT NULL AUTO_INCREMENT,
     user_id       INT      NOT NULL,
-    board_id      INT      NULL    ,
-    attachment_id INT      NULL    ,
+    board_id      INT      NULL,
+    attachment_id INT      NULL,
     content       TEXT     NOT NULL COMMENT '내용',
-    regdate       DATETIME NULL     DEFAULT now() COMMENT '작성일',
+    regdate       DATETIME NULL DEFAULT now() COMMENT '작성일',
     PRIMARY KEY (id)
 );
 
@@ -121,50 +121,49 @@ CREATE TABLE VENUE
     id                   INT          NOT NULL AUTO_INCREMENT,
     venue_name           VARCHAR(50)  NOT NULL,
     address              VARCHAR(100) NOT NULL,
-    limit_num                INT          NOT NULL,
+    limit_num            INT          NOT NULL,
     venue_category       VARCHAR(20)  NOT NULL,
-    info_tel             VARCHAR(20)  NULL    ,
+    info_tel             VARCHAR(20)  NULL,
     price                INT          NOT NULL,
-    total_price          INT          NOT NULL,
+    posible_start_date   DATE         NOT NULL COMMENT '이용가능시작',
+    posible_end_date     DATE         NOT NULL COMMENT '이용가능끝',
     open_time            TIME         NOT NULL COMMENT '영업시작',
     close_time           TIME         NOT NULL COMMENT '영업끝',
-    reservate_date       DATE         NOT NULL COMMENT '예약날짜',
-    reservate_start_time TIME         NOT NULL COMMENT '예약시작',
-    reservate_end_time   TIME         NOT NULL COMMENT '예약끝',
-    img                  VARCHAR(255) NULL    ,
-    paydate              DATETIME     NULL     DEFAULT now(),
+    img                  VARCHAR(255) NULL,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE RESERVATION
 (
-    id       INT  NOT NULL AUTO_INCREMENT,
-    user_id  INT  NOT NULL,
-    venue_id INT  NOT NULL,
-    status   ENUM('CANCELED', 'PAYED', 'DONE') NOT NULL,
-    reservate_date       DATE         NOT NULL COMMENT '예약날짜',
-    reservate_start_time TIME         NOT NULL COMMENT '예약시작',
-    reservate_end_time   TIME         NOT NULL COMMENT '예약끝',
+    id                   INT                                NOT NULL AUTO_INCREMENT,
+    user_id              INT                                NOT NULL,
+    venue_id             INT                                NOT NULL,
+    status               ENUM ('CANCELED', 'PAYED', 'DONE') NOT NULL,
+    reservate_date       DATE                               NOT NULL COMMENT '예약날짜',
+    reservate_start_time TIME                               NOT NULL COMMENT '예약시작',
+    reservate_end_time   TIME                               NOT NULL COMMENT '예약끝',
+    total_price          INT          NOT NULL,
+    paydate              DATETIME     NULL DEFAULT now(),
     PRIMARY KEY (id),
-    FOREIGN KEY (user_id) REFERENCES  USER(id),
-    FOREIGN KEY (venue_id) REFERENCES VENUE(id)
+    FOREIGN KEY (user_id) REFERENCES USER (id),
+    FOREIGN KEY (venue_id) REFERENCES VENUE (id)
 );
 
 CREATE TABLE SOCIALIZING
 (
     id                INT          NOT NULL AUTO_INCREMENT,
-    venue_id          INT          NULL    ,
+    venue_id          INT          NULL,
     socializing_title VARCHAR(20)  NOT NULL,
     category          VARCHAR(10)  NOT NULL,
     detail_category   VARCHAR(20)  NOT NULL,
     address           VARCHAR(100) NOT NULL,
     meeting_date      DATE         NOT NULL COMMENT '약속날짜시간',
     meeting_time      TIME         NOT NULL,
-    limit_num             int          NOT NULL COMMENT '2명 이상',
-    content           LONGTEXT     NULL    ,
-    total_price       INT          NULL     DEFAULT 0,
-    img               VARCHAR(255) NULL     COMMENT '대표사진',
-    regdate           DATETIME     NULL     DEFAULT now(),
+    limit_num         int          NOT NULL COMMENT '2명 이상',
+    content           LONGTEXT     NULL,
+    total_price       INT          NULL DEFAULT 0,
+    img               VARCHAR(255) NULL COMMENT '대표사진',
+    regdate           DATETIME     NULL DEFAULT now(),
     PRIMARY KEY (id)
 );
 
@@ -177,9 +176,9 @@ CREATE TABLE USER_AUTHORITY
 
 CREATE TABLE USER_SOCIALIZING
 (
-    user_id        INT  NOT NULL,
-    socializing_id INT  NOT NULL,
-    role           ENUM('MASTER', 'MEMBER') NOT NULL DEFAULT 'MEMBER',
+    user_id        INT                       NOT NULL,
+    socializing_id INT                       NOT NULL,
+    role           ENUM ('MASTER', 'MEMBER') NOT NULL DEFAULT 'MEMBER',
     PRIMARY KEY (user_id, socializing_id)
 );
 
@@ -289,4 +288,4 @@ ALTER TABLE SOCIALIZING
         FOREIGN KEY (venue_id)
             REFERENCES VENUE (id);
 
-show tables ;
+show tables;
