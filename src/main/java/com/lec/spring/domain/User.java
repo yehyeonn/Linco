@@ -23,4 +23,8 @@ public class User {
     private LocalDate birthday;
     private String profile_picture;
     private LocalDateTime regdate;
+
+    // OAuth2 Client # 추가
+    private String provider;
+    private String providerId;
     }

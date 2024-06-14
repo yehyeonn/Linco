@@ -1,121 +1,70 @@
-/* 헤더 푸터 고정 css */
-
-/* 기본 CSS 초기화 */
-* {
-    margin: 0;
-    box-sizing: border-box;
-}
-
-/* nav bar */
-header {
-    position: fixed; /* 헤더를 화면 상단에 고정 */
-    top: 0; /* 상단에 위치 */
-    width: 100%; /* 화면 전체 너비 */
-    z-index: 1000; /* 다른 요소들 위에 위치 */
-}
-
-.navbar a {
+/* start navbar css */
+.login {
+    background-color: #B3B49E;
+    color: white;
+    font-size: 14px;
+    padding: 8px 20px;
+    border-radius: 50px;
     text-decoration: none;
+    transition: 0.3s background-color;
+}
+
+.login:hover {
+    background-color: #D3374A;
 }
 
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background-color: #EDEBDA;
+    margin: 20px;
+    border-radius: 20px;
+    padding: 0.5rem;
 }
 
-.nav_logo {
-    width: 120px; /* max-width를 width로 변경 */
-    height: 90px; /* max-height를 height로 변경 */
-    display: block;
+.navbar-toggler {
+    border: none;
+    font-size: 1.25em;
 }
 
-.nav_logo a > img {
-    display: block; /* 링크를 블록 요소로 만듭니다 */
-    width: 120px;
-    height: 100px;
+.navbar-toggler:focus,.btn-close:focus {
+    box-shadow: none;
+    outline: none;
+}
+.offcanvas-body, .offcanvas-header {
+    background-color: #EDEBDA;
 }
 
-.nav_menu {
-    display: flex;
-    list-style: none;
-    padding-left: 0;
+.offcanvas-header {
+    border-bottom: 1px solid black;
 }
 
-.nav_menu li {
-    padding: 8px 12px;
-    font-size: 20px;
+.nav-link {
+    color: #333;
+    font-weight: bold;
+    font-size: 18px;
+    position: relative;
 }
 
-.nav_menu li:hover {
-    background-color: red;
-    border-radius: 10px;
+.nav-link:hover {
+    color: #D3374A;
 }
 
-.nav_icon {
-    list-style: none;
-    display: flex;
-    padding-left: 0;
-}
-
-.nav_icon li {
-    padding: 8px 12px;
-}
-
-.navbar_tooglebtn {
-    display: none;
-    position: absolute;
-    right: 32px;
-    font-size: 50px;
-}
-
-
-/*  네비 반응형  */
-@media screen and (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 8px 24px;
+@media (min-width: 768px) {
+    .nav-link::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background-color: #D3374A;
+        visibility: hidden;
+        transition: 0.3s ease-in-out;
     }
 
-    .nav_menu {
-        display: none;
-        flex-direction: column;
-        align-items: center;
+    .nav-link:hover:before {
         width: 100%;
-    }
-
-    .nav_menu li {
-        width: 100%;
-        text-align: center;
-    }
-
-    .nav_menu li > a {
-        color: black;
-    }
-
-    .nav_icon {
-        display: none;
-        justify-content: center;
-        width: 100%;
-    }
-
-    .nav_logo {
-        align-self: flex-start;
-        max-width: 100%;
-        margin-bottom: 10px;
-    }
-
-    .navbar_tooglebtn {
-        display: block;
-    }
-
-    .nav_menu.active {
-        display: flex;
-
-    }
-
-    .nav_icon.active {
-        display: flex;
+        visibility: visible;
     }
 }
+/* end navbar css */
