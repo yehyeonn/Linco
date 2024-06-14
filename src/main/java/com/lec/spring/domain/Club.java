@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserAuthority {
-    private Long id;
-    private String userRoll;    // admin, member
+public class Club {
+
 }
