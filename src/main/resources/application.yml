@@ -1,11 +1,18 @@
+# 서버포트번호
+server:
+  port: 8080
+
 spring:
   application:
     name: linco
 
+# ThymeLeaf 설정
   thymeleaf:
     cache: false
     prefix: classpath:templates/
 
+
+# datasource 설정
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/linco?useSSL=false&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
