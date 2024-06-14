@@ -136,22 +136,18 @@ values (1, 1, 1, '재미없쪙', null),
 
 # select * from COMMENT;
 
-insert into VENUE (venue_name, address, limit_num, venue_category, info_tel, price, total_price, open_time, close_time,
-                   reservate_date, reservate_start_time, reservate_end_time, img, paydate)
-values ('코리아IT아카데미', '서울시 강남구 역삼동 테헤란로 26길 12', 31, '강의실', '070-0000-0000', 1000, 8000, '09:00:00', '22:00:00',
-        '2024-06-14', '09:00:00', '18:00:00', 'face02.png', null),
-       ('코리아IT아카데미', '서울시 강남구 역삼동 테헤란로 26길 12', 6, '강의실', '070-1234-1234', 1000, 12000, '09:00:00', '22:00:00',
-        '2024-06-15', '09:00:00', '22:00:00', 'face03.png', null),
-       ('해성이집', '서울시 동대문구 청량리역 6번 출구', 6, '공용시설', '070-1111-2222', 0, 0, '00:00:00', '23:59:59', '2024-06-13',
-        '00:00:00', '23:59:59', 'face01.png', null);
+insert into VENUE (venue_name, address, limit_num, venue_category, info_tel, price, posible_start_date, posible_end_date, open_time, close_time, img)
+values ('코리아IT아카데미', '서울시 강남구 역삼동 테헤란로 26길 12', 31, '강의실', '070-0000-0000', 1000, '2024-06-14', '2025-06-14', '09:00:00', '22:00:00', 'face02.png'),
+       ('코리아IT아카데미', '서울시 강남구 역삼동 테헤란로 26길 12', 6, '강의실', '070-1234-1234', 1000, '2024-06-14', '2025-06-14', '09:00:00', '22:00:00', 'face03.png'),
+       ('해성이집', '서울시 동대문구 청량리역 6번 출구', 6, '공용시설', '070-1111-2222', 0, '2024-06-14', '2025-06-14', '00:00:00', '23:59:59', 'face01.png');
 
 # select * from VENUE;
 
-insert into RESERVATION (user_id, venue_id, status, reservate_date, reservate_start_time, reservate_end_time)
-values (1, 1, 'PAYED', '2024-06-14', '09:00:00',  '18:00:00'),
-       (1, 2, 'CANCELED', '2024-06-15', '09:00:00',  '22:00:00'),
-       (1, 3, 'PAYED', '2024-06-13', '00:00:00',  '23:59:59'),
-       (2, 1, 'DONE', '2024-06-16', '09:00:00',  '18:00:00');
+insert into RESERVATION (user_id, venue_id, status, reservate_date, reservate_start_time, reservate_end_time, total_price, paydate)
+values (1, 1, 'PAYED', '2024-06-14', '09:00:00',  '18:00:00', 1000, null),
+       (1, 2, 'CANCELED', '2024-06-15', '09:00:00',  '22:00:00', 1000, null),
+       (1, 3, 'PAYED', '2024-06-13', '00:00:00',  '23:59:59', 0, null),
+       (2, 1, 'DONE', '2024-06-16', '09:00:00',  '18:00:00', 1000, null);
 
 # select * from RESERVATION;
 
