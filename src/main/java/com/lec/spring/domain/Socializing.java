@@ -1,9 +1,6 @@
 package com.lec.spring.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -26,4 +23,7 @@ public class Socializing {
     private Long total_price;
     private String img;
     private LocalDateTime regdate;
+
+    @ToString.Exclude
+    private User author;
 }
