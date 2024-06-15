@@ -27,12 +27,12 @@ public class BoardController {
     public BoardController() {
     }
 
-    @GetMapping("/board_write")
+    @GetMapping("/write")
     public void write(){
 
     }
 
-    @PostMapping("/board_write")
+    @PostMapping("/write")
     public String writeOk(
             @RequestParam Map<String, MultipartFile> files,
             @Valid Board board,
@@ -56,25 +56,25 @@ public class BoardController {
         return "common/board_writeOk";
     }
 
-    @GetMapping("/board_detail/{id}")
+    @GetMapping("/detail/{id}")
     public String detail(@PathVariable Long id, Model model){
         model.addAttribute("board", boardService.detail(id));
 
         return "common/board_detail";
     }
 
-    @GetMapping("/board_list")
+    @GetMapping("/list")
     public void list(Integer page, Model model){
         boardService.list(page, model);
     }
 
-    @GetMapping("/board_update/{id}")
+    @GetMapping("/update/{id}")
     public String update(@PathVariable Long id, Model model){
         model.addAttribute("board", boardService.selectById(id));
         return "common/board_update";
     }
 
-    @PostMapping("/board_update")
+    @PostMapping("/update")
     public String updateOk(
             @RequestParam Map<String, MultipartFile> files,
             @Valid Board board,
@@ -98,7 +98,7 @@ public class BoardController {
         return "common/board_updateOk";
     }
 
-    @PostMapping("/board_delete")
+    @PostMapping("/delete")
     public String deleteOk(Long id, Model model){
         model.addAttribute("result", boardService.deleteById(id));
 

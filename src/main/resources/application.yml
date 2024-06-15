@@ -6,7 +6,12 @@ spring:
   application:
     name: linco
 
-# ThymeLeaf 설정
+  security:
+    user:
+      name: user
+      password: 1234
+
+  # ThymeLeaf 설정
   thymeleaf:
     cache: false
     prefix: classpath:templates/
